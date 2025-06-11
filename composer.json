@@ -2,7 +2,7 @@
     "name": "danie/sedex_blog",
     "autoload": {
         "psr-4": {
-            "Danie\\SedexBlog\\": "src/"
+            "app\\": "app/"
         }
     },
     "authors": [

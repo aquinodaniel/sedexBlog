@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Danie\\SedexBlog\\' => array($baseDir . '/src'),
+    'app\\' => array($baseDir . '/app'),
 );
