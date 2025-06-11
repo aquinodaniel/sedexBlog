@@ -1,0 +1,15 @@
+{
+    "name": "danie/sedex_blog",
+    "autoload": {
+        "psr-4": {
+            "Danie\\SedexBlog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dante Aquino",
+            "email": "dante@teste.com"
+        }
+    ],
+    "require": {}
+}
