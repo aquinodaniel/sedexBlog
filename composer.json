@@ -11,5 +11,8 @@
             "email": "dante@teste.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.21"
+    }
+    
 }

@@ -34,7 +34,8 @@ class Router {
     {
         return [
             "get" => [
-                "/" => self::load("HomeController", "index")
+                "/" => self::load("HomeController", "index"),
+                "intro" => self::load("IntroController", "index")
             ],
             "post" => [
 
