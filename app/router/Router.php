@@ -1,6 +1,8 @@
 <?php
 
 namespace app\router;
+use app\helpers\Request;
+use app\helpers\Uri;
 use Exception;
 
 class Router {
@@ -34,13 +36,35 @@ class Router {
     {
         return [
             "get" => [
-                "/" => self::load("HomeController", "index"),
-                "intro" => self::load("IntroController", "index")
+                "/" => fn() => self::load("HomeController", "index"),
+                "/intro" => fn() => self::load("IntroController", "index"),
+                "/login" => fn() => self::load("LoginController", "index"),
+                "/register" => fn() => self::load("RegisterController", "index"),
             ],
             "post" => [
-
+                "/intro" => fn() => self::load("LoginController", "")
             ]
         ];
+    }
+
+    public static function execute()
+    {
+        $route = self::routes();
+        $uri = Uri::get('path');
+        $request = Request::request();
+
+        if(!isset($route[$request]))
+        {
+            throw new Exception("O método http {$request} não existe.");
+        }
+
+        if(!array_key_exists($uri, $route[$request])){
+            throw new Exception("A URI {$uri} não existe.");
+        }
+
+        $controller = $route[$request][$uri]; //$route["post"]["/contact"] ===> fn() =>  self::load("ContactController", "index")
+        $controller();                        // fn() =>  self::load("ContactController", "index")
+
     }
 
 }

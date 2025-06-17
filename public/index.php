@@ -4,4 +4,4 @@ use app\router\Router;
 
 require '../vendor/autoload.php';
 
-Router::routes();
+Router::execute();

@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class IntroController
+class LoginController
 {
 
     public function index()
@@ -12,7 +12,7 @@ class IntroController
             'cache' => false, // Desative no desenvolvimento
         ]);
 
-        $template = $twig->load('intro.html');
+        $template = $twig->load('login.html');
 
         $params = []; // Aqui você pode passar variáveis para o template
 

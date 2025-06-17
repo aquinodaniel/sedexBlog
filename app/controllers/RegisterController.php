@@ -2,19 +2,20 @@
 
 namespace app\controllers;
 
-class IntroController
+class RegisterController
 {
 
     public function index()
     {
+
         $loader = new \Twig\Loader\FilesystemLoader('../app/views');
         $twig = new \Twig\Environment($loader, [
-            'cache' => false, // Desative no desenvolvimento
+            'cache' => false, 
         ]);
 
-        $template = $twig->load('intro.html');
+        $template = $twig->load('register.html');
 
-        $params = []; // Aqui você pode passar variáveis para o template
+        $params = [];
 
         echo $template->render($params);
     }

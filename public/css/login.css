@@ -12,11 +12,10 @@ body {
 header {
     padding: 25px;
     width: 100%;
-    background-color: #000000;
+    background-color: #071934;
     color: white;
     display: flex;
     align-items: center;
-    margin-bottom: -100px;
 }
 
 header p {
@@ -58,60 +57,87 @@ main {
     padding: 20px;
 }
 
-main .content {
-    text-align: center;
+.form-container {
+    background-color: #071934;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 450px;
     animation: fadeIn 1.5s ease;
 }
 
-main img {
-    width: 350px;
-    height: 350px;
-    margin-bottom: 20px;
-    transition: transform 0.5s ease;
-}
-
-main img:hover {
-    transform: scale(1.05) rotate(2deg);
-    cursor: pointer;
-}
-
-main h1 {
-    font-size: 38px;
-    color: white;
-    margin-bottom: 15px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    transition: color 0.3s ease;
-}
-
-main h1:hover {
-    color: #FFDE08;
-    cursor: default;
-}
-
-main p {
-    font-size: 20px;
+.form-container h1 {
     color: white;
     margin-bottom: 25px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    line-height: 1.5;
+    text-align: center;
 }
 
-main a {
-    color: #B17000;
-    font-size: 22px;
-    background-color: #FFDE08;
-    padding: 12px 32px;
-    border-radius: 90px;
-    font-weight: bolder;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    color: white;
+    margin-bottom: 6px;
+    font-weight: bold;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-main a:hover {
+.input-group input {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #021025;
+    color: white;
+    outline: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.input-group input:focus {
+    background-color: #0b2a50;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #FFDE08;
+    color: #B17000;
+    border: none;
+    border-radius: 90px;
+    font-size: 18px;
+    font-weight: bolder;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+button:hover {
     background-color: #e0c507;
-    transform: scale(1.08);
+    transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.register-link {
+    text-align: center;
+    color: white;
+    margin-top: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.register-link a {
+    color: #FFDE08;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #e0c507;
 }
 
 footer {
