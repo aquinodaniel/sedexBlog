@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEDEX - Cadastro</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
+
 <body>
     <header>
         <p>SEDEX</p>
@@ -18,6 +20,7 @@
     <main>
         <div class="form-container">
             <h1>Crie sua conta</h1>
+
             <form action="/register" method="POST">
                 <div class="input-group">
                     <label for="nome">Nome completo</label>
@@ -27,11 +30,17 @@
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
+                    {% if erros.username %}
+                    <div class="erro">{{ erros.username }}</div>
+                    {% endif %}
                 </div>
 
                 <div class="input-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="Email">Email</label>
+                    <input type="Email" id="email" name="email" required>
+                    {% if erros.email %}
+                    <div class="erro">{{ erros.email }}</div>
+                    {% endif %}
                 </div>
 
                 <div class="input-group">
@@ -41,12 +50,22 @@
 
                 <div class="input-group">
                     <label for="senha">Senha</label>
+                    <span> *pelo menos uma letra maiúscula <br>
+                        *pelo menos um caractere especial (qualquer não alfanumérico) <br>
+                        *mínimo de 8 caracteres <br>
+                    </span>
                     <input type="password" id="senha" name="senha" required>
+                    {% if erros.senha %}
+                    <div class="erro">{{ erros.senha }}</div>
+                    {% endif %}
                 </div>
 
                 <div class="input-group">
                     <label for="confirma_senha">Confirmar senha</label>
                     <input type="password" id="confirma_senha" name="confirma_senha" required>
+                    {% if erros.confirmar_senha %}
+                    <div class="erro">{{ erros.confirmar_senha }}</div>
+                    {% endif %}
                 </div>
 
                 <button type="submit">CADASTRAR</button>
@@ -58,4 +77,5 @@
         <p>&copy; 2025 SEDEX. Todos os direitos reservados.</p>
     </footer>
 </body>
+
 </html>

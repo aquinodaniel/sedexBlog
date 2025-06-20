@@ -145,3 +145,14 @@ footer {
         transform: translateY(0);
     }
 }
+
+/*VALIDAÇÕES*/
+
+.erro {
+    color: #a10000;
+    margin-top: 7px;
+}
+
+.input-group span {
+    color: rgb(68, 67, 67);
+}

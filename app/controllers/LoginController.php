@@ -16,6 +16,10 @@ class LoginController
 
         $params = []; // Aqui você pode passar variáveis para o template
 
+        if (isset($_GET['sucesso']) && $_GET['sucesso'] == '1') {
+            $params['sucesso'] = "Seja bem-vindo! Cadastro realizado com sucesso. Faça seu login.";
+        }
+
         echo $template->render($params);
     }
 }
