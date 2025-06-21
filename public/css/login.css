@@ -187,3 +187,10 @@ footer {
     opacity: 1;
     top: 50px;
 }
+
+/*ERRO*/
+
+.alert_erro {
+    color: red;
+    margin: auto;
+}

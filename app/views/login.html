@@ -27,7 +27,18 @@
     <main>
         <div class="form-container">
             <h1>Bem-vindo de volta!</h1>
-            <form action="#" method="POST">
+            {% if sucesso %}
+            <div class="alert sucesso">
+                {{ sucesso }}
+            </div>
+            {% endif %}
+
+            {% if erro %}
+            <div class="alert_erro">
+                {{ erro }}
+            </div>
+            {% endif %}
+            <form action="login" method="POST">
                 <div class="input-group">
                     <label for="username">Username ou E-mail</label>
                     <input type="text" id="username" name="username" required>
@@ -53,7 +64,7 @@
 </body>
 
 <script>
-        const toast = document.getElementById('toast');
+    const toast = document.getElementById('toast');
     if (toast.classList.contains('show')) {
         setTimeout(() => {
             toast.classList.remove('show');

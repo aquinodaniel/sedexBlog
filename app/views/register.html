@@ -29,6 +29,9 @@
 
                 <div class="input-group">
                     <label for="username">Username</label>
+                    <span> *entre 5 e 15 caracteres.<br>
+                        *sem nenhum espaço. <br>
+                    </span>
                     <input type="text" id="username" name="username" required>
                     {% if erros.username %}
                     <div class="erro">{{ erros.username }}</div>

@@ -52,4 +52,19 @@ class Usuario
 
         return $stmt->rowCount() > 0;
     }
+
+    public static function validarAcesso($username, $email)
+    {
+
+        $connect = Connection::getConn();
+
+        $sql = "SELECT * FROM usuario WHERE username = :username OR email = :email";
+        $sql = $connect->prepare($sql);
+        $sql->bindValue(':username', $username);
+        $sql->bindValue(':email', $email);
+        $sql->execute();
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+
 }

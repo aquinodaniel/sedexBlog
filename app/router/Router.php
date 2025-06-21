@@ -42,7 +42,8 @@ class Router {
                 "/register" => fn() => self::load("RegisterController", "index"),
             ],
             "post" => [
-                "/register" => fn() => self::load("RegisterController", "salvar")
+                "/register" => fn() => self::load("RegisterController", "salvar"),
+                "/login" => fn() => self::load("LoginController", "autenticar")
             ]
         ];
     }
