@@ -1,0 +1,24 @@
+{% extends "estrutura.html" %}
+
+{% block titulo %}Home - SEDEX Blog{% endblock %}
+
+{% block conteudo %}
+
+<h2>Feed de Postagens</h2>
+
+<div class="posts">
+    {% for post in posts %}
+        <div class="post">
+            <h3>{{ post.titulo }}</h3>
+            <p>{{ post.conteudo }}</p>
+            <div class="post-info">
+                <span>Por {{ post.autor }}</span> |
+                <span>{{ post.data }}</span>
+            </div>
+        </div>
+    {% else %}
+        <p>Nenhuma postagem encontrada.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

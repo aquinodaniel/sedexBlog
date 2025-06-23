@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}SEDEX Blog{% endblock %}</title>
+    <link rel="stylesheet" href="/css/estrutura.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="topo">
+                <a href="/" class="logo">SEDEX</a>
+            </div>
+
+            <div class="links">
+                <a href="/" class="item">
+                    🏠 <span>Home</span>
+                </a>
+
+                <a href="#" class="item" onclick="abrirPopup()">
+                    ➕ <span>Adicionar Post</span>
+                </a>
+
+                <a href="/perfil" class="item">
+                    👤 <span>Perfil</span>
+                </a>
+                <a href="/sobre" class="item">
+                    ℹ️ <span>Sobre</span>
+                </a>
+
+            </div>
+
+            <a href="/logout" class="item logout">
+                🚪 <span>Sair</span>
+            </a>
+        </div>
+
+        <div class="popup" id="popup">
+            <div class="popup-conteudo">
+                <span class="fechar" onclick="fecharPopup()">✖</span>
+
+                <form action="/adicionar-post" method="POST" class="form-popup">
+                    <h2>NOVO POST</h2>
+                    <textarea name="conteudo" placeholder="O que você está pensando?" required></textarea>
+                    <button type="submit">Publicar</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Área principal -->
+        <main class="content">
+            {% block conteudo %}{% endblock %}
+        </main>
+
+    </div>
+
+</body>
+
+<script>
+    function abrirPopup() {
+        document.getElementById('popup').style.display = 'flex';
+    }
+
+    function fecharPopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
+
+</html>
