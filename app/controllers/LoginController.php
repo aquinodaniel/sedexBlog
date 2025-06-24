@@ -68,6 +68,7 @@ class LoginController
             header('location: /login');
             exit;
         }
+
     }
 
     public function logout()

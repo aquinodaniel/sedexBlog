@@ -31,7 +31,8 @@ body {
     transition: width 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Coloca o logout embaixo */
+    justify-content: space-between; 
+    z-index: 1000;
 }
 
 .sidebar:hover {
@@ -81,11 +82,14 @@ body {
     font-size: 1em;
 }
 
+.sidebar:hover ~ .main-content {
+    margin-left: 220px; /* Largura da sidebar aberta */
+}
+
 /* Conteúdo principal */
 .main-content {
-    flex-grow: 1;
-    padding: 30px;
-    background-color: white;
+    margin-left: 70px; /* Largura da sidebar fechada */
+    transition: margin-left 0.3s ease;
 }
 
 .posts {
