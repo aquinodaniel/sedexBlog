@@ -12,8 +12,12 @@
 
     <div id="toast" class="toast {{ sucesso is defined ? 'show' : '' }}">
         {% if sucesso %}
-        {{ sucesso }}
+        <div id="toast" class="toast show">
+            {{ sucesso }}
+            <div class="toast-progress"></div>
+        </div>
         {% endif %}
+
     </div>
 
     <header>
@@ -26,12 +30,7 @@
 
     <main>
         <div class="form-container">
-            <h1>Bem-vindo de volta!</h1>
-            {% if sucesso %}
-            <div class="alert sucesso">
-                {{ sucesso }}
-            </div>
-            {% endif %}
+
 
             {% if erro %}
             <div class="alert_erro">
@@ -70,6 +69,19 @@
             toast.classList.remove('show');
         }, 4000); // 4 segundos
     }
+
+        window.addEventListener('DOMContentLoaded', () => {
+        const toast = document.getElementById('toast');
+        if (toast) {
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.style.display = 'none';
+            }, 4000); // tempo total em milissegundos (4s)
+        }
+    });
+
+</script>
+
 </script>
 
 </html>

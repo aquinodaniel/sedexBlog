@@ -3,6 +3,7 @@
 namespace app\models;
 
 use lib\database\Connection;
+use Twig\Node\Expression\Binary\StartsWithBinary;
 
 class Postagem
 {
@@ -28,5 +29,33 @@ class Postagem
 
 
         return $results;
+    }
+
+    public static function selectPostId($postId)
+    {
+        $connect = Connection::getConn();
+
+        $sql = "SELECT postagens.id, postagens.conteudo, usuario.username, usuario.nome, usuario.foto_perfil
+                FROM postagens INNER JOIN usuario ON postagens.usuarioId = usuario.id WHERE postagens.id = :postId";
+        $sql = $connect->prepare($sql);
+        $sql->bindValue(":postId", $postId, \PDO::PARAM_INT);
+        $sql->execute();
+
+        $result = $sql->fetch(\PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function insertPost(string $conteudo, int $usuario_id)
+    {
+        $connect = Connection::getConn();
+
+        $sql = "INSERT INTO postagens (conteudo, data_criacao, usuarioId) 
+            VALUES (:conteudo, :data_criacao, :usuario_id)";
+        $sql = $connect->prepare($sql);
+        $sql->bindValue(":conteudo", $conteudo);
+        $sql->bindValue(":data_criacao", date('Y-m-d H:i:s')); // adiciona data atual
+        $sql->bindValue(":usuario_id", $usuario_id);
+        $sql->execute();
     }
 }

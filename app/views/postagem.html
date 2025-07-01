@@ -1,0 +1,55 @@
+{% extends "estrutura.html" %}
+
+{% block titulo %}Postagem - SEDEX{% endblock %}
+
+{% block conteudo %}
+
+<link rel="stylesheet" href="/css/postagem.css">
+
+<div class="postagem-container">
+    <div class="postagem-usuario">
+        <img src="{{ post.foto_perfil }}" alt="Avatar" class="avatar">
+        <div class="info">
+            <h3>{{ post.nome }}</h3>
+            <p>@{{ post.username }}</p>
+        </div>
+    </div>
+
+    <div class="postagem-conteudo">
+        {{ post.conteudo }}
+    </div>
+
+    <div class="postagem-data">
+        Postado em {{ post.data_postagem|date("d/m/Y H:i") }}
+    </div>
+
+    <div class="comentarios">
+        <h4>Comentários</h4>
+
+        <div class="criar-post">
+            <img src="{{ post.foto_perfil }}" alt="" class="avatar">
+            <form action="/insert-coment?postagemId={{ post.id }}" method="POST">
+                <textarea name="conteudo" placeholder="Faça um comentário!" required></textarea>
+                <button type="submit">Postar</button>
+            </form>
+        </div>
+
+        {% if comentario is empty %}
+        <p>Nenhum comentário ainda.</p>
+        {% else %}
+            {% for comentario in comentario %}
+                <div class="comentario">
+                    <img src="{{ comentario.foto_perfil }}" class="avatar" alt="avatar">
+                    <div class="comentario-info">
+                        <strong>{{ comentario.nome }}</strong>
+                        <p class="username">@{{ comentario.username }}</p>
+                        <p class="conteudo">{{ comentario.conteudo }}</p>
+                        <span class="data">{{ comentario.data_criacao|date("d/m/Y H:i") }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

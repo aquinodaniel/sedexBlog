@@ -2,6 +2,7 @@ body {
     padding: 12px;
     display: flex;
     justify-content: center;
+    background-color:#071934 ;
 }
 
 
@@ -28,6 +29,7 @@ header {
     justify-content: space-between;
     margin-bottom: 7px;
     align-items: center;
+    color: white;
 }
 
 .search {
@@ -80,9 +82,21 @@ header form button {
 
 .acoes-post {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    text-align: center;
     width: 100%;
     margin-top: 8px;
+}
+
+.acoes-inputs a{
+   font-size: 22px; 
+   text-decoration: none;
+   border-radius: 90px;
+   padding: 7px;
+}
+
+.acoes-inputs a:hover {
+    background-color: #010d2238;
 }
 
 .acoes-post button {
@@ -120,6 +134,7 @@ header form button {
     flex-direction: column;
     gap: 12px;
     transition: background-color 0.3s;
+    max-width: 700px;
 }
 
 .post:hover {
@@ -129,6 +144,7 @@ header form button {
 .usuario-info {
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
     gap: 12px;
 }
 

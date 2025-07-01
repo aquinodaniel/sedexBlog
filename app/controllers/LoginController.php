@@ -7,6 +7,18 @@ use app\models\Usuario;
 class LoginController
 {
 
+    public static function validarCookie()
+    {
+
+        session_start();
+
+        if (!isset($_COOKIE['usuario_logado']) && ($_GET['registro'] ?? '') !== '1') {
+            header("Location: /intro");
+            exit;
+        }
+        
+    }
+
     private function carregarTemplate($nomeTemplate, $params = [])
     {
         $loader = new \Twig\Loader\FilesystemLoader('../app/views');
@@ -22,7 +34,9 @@ class LoginController
     public function index()
     {
 
-        session_start();
+
+        self::validarCookie();
+
         $params = [];
 
         if (isset($_SESSION['sucesso'])) {
@@ -44,9 +58,9 @@ class LoginController
 
         session_start();
 
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $username = $_POST['username'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $senha = $_POST['senha'] ?? '';
 
         $usuario = new Usuario();
         $dadosValidos = $usuario->validarAcesso($username, $email);
@@ -62,20 +76,16 @@ class LoginController
             $_SESSION['username'] = $dadosValidos['username'];
             $_SESSION['email'] = $dadosValidos['email'];
 
+            if (!isset($_COOKIE['usuario_logado'])) {
+                CookieController::setCookie();
+            }
+
             header('Location: /');
+            exit;
         } else {
             $_SESSION['erro'] = "Senha incorreta.";
             header('location: /login');
             exit;
         }
-
-    }
-
-    public function logout()
-    {
-        session_start();
-        session_destroy();
-        header('Location: /login');
-        exit;
     }
 }

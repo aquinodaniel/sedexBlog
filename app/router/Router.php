@@ -40,10 +40,14 @@ class Router {
                 "/intro" => fn() => self::load("IntroController", "index"),
                 "/login" => fn() => self::load("LoginController", "index"),
                 "/register" => fn() => self::load("RegisterController", "index"),
+                "/logout" => fn() => self::load("LogoutController", "logout"),
+                "/post" => fn() => self::load("PostController", "index")
             ],
             "post" => [
                 "/register" => fn() => self::load("RegisterController", "salvar"),
-                "/login" => fn() => self::load("LoginController", "autenticar")
+                "/login" => fn() => self::load("LoginController", "autenticar"),
+                "/novo-post" => fn () => self::load("PostController", "insert"),
+                "/insert-coment" => fn() => self::load("PostController", "insertComent")
             ]
         ];
     }

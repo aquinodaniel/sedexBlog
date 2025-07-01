@@ -26,7 +26,7 @@ class RegisterController
 
     public function salvar()
     {
-        $params = [];
+        session_start(); // ✅ Muito importante!
 
         try {
             $nome = $_POST['nome'];
@@ -39,18 +39,16 @@ class RegisterController
             $erros = \app\controllers\UsuarioController::inserirDados($nome, $username, $email, $dataNascimento, $senha, $confimarSenha);
 
             if (!empty($erros)) {
-                $params['erros'] = $erros; // Envia os erros para a view
+                $params['erros'] = $erros;
+                $this->carregarTemplate('register.html', $params);
             } else {
-                $params['sucesso'] = "Usuário cadastrado com sucesso!";
+                $_SESSION['sucesso'] = "Cadastro realizado com sucesso! Agora é só fazer login.";
+                header('Location: /login?registro=1'); // redireciona para o controller do login
+                exit;
             }
         } catch (Exception $e) {
-            $params['erro_geral'] = $e->getMessage(); // Se der um erro não tratado
+            $params['erro_geral'] = $e->getMessage();
+            $this->carregarTemplate('register.html', $params);
         }
-
-        $this->carregarTemplate('register.html', $params);
-
-        header('Location: /login?sucesso=1');
-        exit;
-
     }
 }

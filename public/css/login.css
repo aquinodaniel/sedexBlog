@@ -188,6 +188,39 @@ footer {
     top: 50px;
 }
 
+.toast {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    min-width: 200px;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    animation: progressBar 4s linear forwards;
+    border-radius: 0 0 8px 8px;
+}
+
+@keyframes progressBar {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+
 /*ERRO*/
 
 .alert_erro {
