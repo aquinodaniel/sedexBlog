@@ -7,9 +7,22 @@ use app\models\Postagem;
 class HomeController
 {
 
+    private function validarCookie()
+    {
+
+        session_start();
+
+        if (!isset($_COOKIE['usuario_logado']) && ($_GET['registro'] ?? '') !== '1') {
+            header("Location: /login");
+            exit;
+        }
+    }
+
     public function index()
     {
-        session_start();
+
+        self::validarCookie();
+
 
         if (!isset($_SESSION['id'])) {
             header('Location: /login');
@@ -31,9 +44,5 @@ class HomeController
         $params['posts'] = $collection;
 
         echo $template->render($params);
-
-
     }
-
-
 }

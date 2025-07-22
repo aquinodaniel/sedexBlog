@@ -12,9 +12,8 @@ class LoginController
 
         session_start();
 
-        if (!isset($_COOKIE['usuario_logado']) && ($_GET['registro'] ?? '') !== '1') {
-            header("Location: /intro");
-            exit;
+        if (!isset($_COOKIE['usuario_logado']) || ($_GET['registro'] ?? '') !== 'sim') {
+            CookieController::setCookie();
         }
         
     }

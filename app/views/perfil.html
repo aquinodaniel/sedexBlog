@@ -1,0 +1,43 @@
+{% extends "estrutura.html" %}
+
+{% block titulo %}Perfil - SEDEX{% endblock %}
+
+{% block conteudo %}
+<link rel="stylesheet" href="/css/perfil.css">
+
+<div class="perfil-container">
+    <div class="perfil-topo">
+        <img src="{{ usuario.foto_perfil }}" alt="Avatar do usuário" class="avatar-grande">
+        <div class="perfil-info">
+            <h2>{{ usuario.nome }}</h2>
+            <p class="username">@{{ usuario.username }}</p>
+            <p class="bio">{{ usuario.bio }}</p>
+        </div>
+    </div>
+
+    <div class="perfil-detalhes">
+        <div class="detalhe">
+            <strong>{{ usuario.total_postagens }}</strong>
+            <span>Postagens</span>
+        </div>
+        <div class="detalhe">
+            <strong>{{ usuario.data_entrada|date("d/m/Y") }}</strong>
+            <span>Membro desde</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="perfil-postagens">
+        <h3>Postagens Recentes</h3>
+        {% for post in postagens %}
+        <div class="post">
+            <p>{{ post.conteudo }}</p>
+            <span class="data">{{ post.data_postagem|date("d/m/Y H:i") }}</span>
+        </div>
+        {% else %}
+        <p>Este usuário ainda não postou nada.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

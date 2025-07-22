@@ -12,7 +12,7 @@ abstract class Connection
     public static function getConn()
     {
         if (!self::$conn) {
-            self::$conn = new PDO('mysql:host=localhost;dbname=sedexblog;', 'root', '', [
+            self::$conn = new PDO('mysql:host=localhost;dbname=sedexblog;', 'root', '#Dante4real', [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]);
         }

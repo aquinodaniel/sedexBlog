@@ -1,0 +1,29 @@
+create table usuario (
+	id int PRIMARY KEY NOT NULL,
+    username varchar(50) not null,
+    email varchar(50) not null,
+    data_nascimento date not null,
+    senha varchar(20) not null
+);
+
+create table postagens (
+	id int primary key not null,
+    conteudo varchar(300) not null,
+    data_criacao date not null,
+    usuarioId int not null,
+    
+    foreign key (usuarioId) references usuario(id)
+    
+);
+
+create table comentarios (
+	id int primary key not null,
+    conteudo varchar(300) not null,
+    data_criacao date not null,
+    usuarioId int not null,
+    postagemId int not null,
+    
+    foreign key (usuarioId) references usuario(id),
+    foreign key (postagemId) references postagens(id)
+
+);
