@@ -1,29 +1,34 @@
-create table usuario (
-	id int PRIMARY KEY NOT NULL,
-    username varchar(50) not null,
-    email varchar(50) not null,
-    data_nascimento date not null,
-    senha varchar(20) not null
+-- Criar banco de dados
+CREATE DATABASE IF NOT EXISTS sedexblog;
+USE sedexblog;
+
+-- Criar tabela de usuários
+CREATE TABLE usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    foto_perfil VARCHAR(255) DEFAULT NULL
 );
 
-create table postagens (
-	id int primary key not null,
-    conteudo varchar(300) not null,
-    data_criacao date not null,
-    usuarioId int not null,
-    
-    foreign key (usuarioId) references usuario(id)
-    
+-- Criar tabela de postagens
+CREATE TABLE postagens (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    conteudo VARCHAR(300) NOT NULL,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    usuarioId INT NOT NULL,
+    FOREIGN KEY (usuarioId) REFERENCES usuario(id)
 );
 
-create table comentarios (
-	id int primary key not null,
-    conteudo varchar(300) not null,
-    data_criacao date not null,
-    usuarioId int not null,
-    postagemId int not null,
-    
-    foreign key (usuarioId) references usuario(id),
-    foreign key (postagemId) references postagens(id)
-
+-- Criar tabela de comentários
+CREATE TABLE comentarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    conteudo VARCHAR(300) NOT NULL,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    usuarioId INT NOT NULL,
+    postagemId INT NOT NULL,
+    FOREIGN KEY (usuarioId) REFERENCES usuario(id),
+    FOREIGN KEY (postagemId) REFERENCES postagens(id)
 );
