@@ -3,41 +3,92 @@
 {% block titulo %}Perfil - SEDEX{% endblock %}
 
 {% block conteudo %}
+<link rel="stylesheet" href="/caminho/para/main.css">
 <link rel="stylesheet" href="/css/perfil.css">
 
-<div class="perfil-container">
-    <div class="perfil-topo">
-        <img src="{{ usuario.foto_perfil }}" alt="Avatar do usuário" class="avatar-grande">
-        <div class="perfil-info">
-            <h2>{{ usuario.nome }}</h2>
-            <p class="username">@{{ usuario.username }}</p>
-            <p class="bio">{{ usuario.bio }}</p>
+<div class="estrutura">
+    <div class="perfil-container">
+        <div class="FotoDeCapa">
+            <div class="fotocapa">
+                <img src="" alt="Foto de capa">
+            </div>
         </div>
-    </div>
+        <div class="mainUserContent">
+            <div class="perfil-topo">
+                <img src="{{ usuario.foto_perfil }}" alt="Avatar do usuário" class="avatar-grande">
+                <div class="perfil-info">
+                    <h2>{{ usuario.nome }}</h2>
+                    <p class="username">@{{ usuario.username }}</p>
+                    {% if usuario.id == usuario_logado.id %}
+                    <!-- Botão que abre o popup -->
+                    <button id="editarPerfilBtn" class="botao-editar">Editar perfil</button>
 
-    <div class="perfil-detalhes">
-        <div class="detalhe">
-            <strong>{{ usuario.total_postagens }}</strong>
-            <span>Postagens</span>
-        </div>
-        <div class="detalhe">
-            <strong>{{ usuario.data_entrada|date("d/m/Y") }}</strong>
-            <span>Membro desde</span>
-        </div>
-    </div>
+                    <!-- Janela popup -->
+                    <div id="popupPerfil" class="popup-container">
+                        <div class="popup-conteudo">
+                            <span class="fechar-popup" id="fecharPopup">&times;</span>
+                            <h3>Editar Perfil</h3>
+                            <form>
+                                <label>Alterar foto de capa:</label>
+                                <input type="file" accept="image/*"><br>
 
-    <hr>
+                                <label>Alterar foto de perfil:</label>
+                                <input type="file" accept="image/*"><br>
 
-    <div class="perfil-postagens">
-        <h3>Postagens Recentes</h3>
-        {% for post in postagens %}
-        <div class="post">
-            <p>{{ post.conteudo }}</p>
-            <span class="data">{{ post.data_postagem|date("d/m/Y H:i") }}</span>
+                                <label>Novo username:</label>
+                                <input type="text" placeholder="Digite o novo username"><br>
+
+                                <label>Nova bio:</label>
+                                <textarea rows="3" placeholder="Digite sua nova bio"></textarea><br>
+
+                                <button type="submit">Salvar alterações</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="perfil-detalhes">
+                <div class="detalhe">
+                    <strong>{{ usuario.total_postagens }}</strong>
+                    <span>Postagens</span>
+                </div>
+                <div class="detalhe">
+                    <strong>{{ usuario.data_entrada|date("d/m/Y") }}</strong>
+                    <span>Membro desde</span>
+                </div>
+            </div>
+            <hr>
+            <div class="perfil-postagens">
+                <h3>Postagens Recentes</h3>
+                {% for post in postagens %}
+                <div class="post">
+                    <p>{{ post.conteudo }}</p>
+                    <span class="data">{{ post.data_postagem|date("d/m/Y H:i") }}</span>
+                </div>
+                {% else %}
+                <p>Este usuário ainda não postou nada.</p>
+                {% endfor %}
+            </div>
         </div>
-        {% else %}
-        <p>Este usuário ainda não postou nada.</p>
-        {% endfor %}
     </div>
 </div>
+
+<script>
+    document.getElementById('editarPerfilBtn').addEventListener('click', function () {
+        document.getElementById('popupPerfil').style.display = 'flex';
+    });
+
+    document.getElementById('fecharPopup').addEventListener('click', function () {
+        document.getElementById('popupPerfil').style.display = 'none';
+    });
+
+    // Opcional: fechar ao clicar fora da janela
+    window.addEventListener('click', function (event) {
+        const popup = document.getElementById('popupPerfil');
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+</script>
 {% endblock %}

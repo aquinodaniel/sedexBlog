@@ -13,7 +13,8 @@
         }
     ],
     "require": {
-        "twig/twig": "^3.21"
+        "twig/twig": "^3.21",
+        "mongodb/mongodb": "^2.1"
     }
     
 }
